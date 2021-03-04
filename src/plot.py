@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from decimal import Decimal
 
 
 def filter_topics(t, q):
@@ -16,7 +17,7 @@ def filter_topics(t, q):
 
 if __name__ == '__main__':
     # name of the csv file to load from
-    name = 'plot_files/bm25, tfidf, pl2, dl.csv'
+    name = 'plot_files/bm25, tfidf, pl2, dl, dirichletlm.csv'
 
     test_topics = pd.read_csv('test_topics.csv')
     test_qrels = pd.read_csv('test_qrels.csv')
@@ -37,5 +38,7 @@ if __name__ == '__main__':
     plt.locator_params(axis='x', nbins=20)
     mean = results["value"].mean()
     ax.axvline(mean)
+    for p in ax.patches:
+        ax.annotate(round(Decimal(str(p.get_width())), 3), (p.get_width()*1.005, p.get_y()))
     plt.xlim([0, 1])
     plt.show()
