@@ -32,7 +32,7 @@ if __name__ == '__main__':
         [BM25_br],
         newTopics,
         qrels,
-        eval_metrics=["map"],
+        eval_metrics=["ndcg_cut_20"],
         perquery=True)
 
 
